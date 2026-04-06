@@ -17,7 +17,7 @@ An all-in-one student productivity web application designed to manage academic a
 
 ## 🖼️ Screenshots
 
-### 🏠 Dashboard (Expense Tracker)
+### 🏠 Dashboard
 
 ![Dashboard](assets/Dashboard_Page.png)
 
@@ -26,7 +26,7 @@ An all-in-one student productivity web application designed to manage academic a
 ### 👋 Login Page
 
 ![Login](assets/Login_Page.png)
-![Login1](assets/Login_Page_1.png)
+![Login Filled](assets/Login_Page_1.png)
 
 <br>
 
@@ -38,11 +38,11 @@ An all-in-one student productivity web application designed to manage academic a
 
 ### Features/Modules Pages
 
-![Module1](Module_1_Page.png)
-![Module11](Module_1_Page_2.png)
-![Module2](Module_2_Page.png)
-![Module21](Module_2_Page_2.png)
-![Module3](Module_3.png)
+![Module1](assets/Module_1_Page.png)
+![Module1-2](assets/Module_1_Page_2.png)
+![Module2](assets/Module_2_Page.png)
+![Module2-2](assets/Module_2_Page_2.png)
+![Module3](assets/Module_3.png)
 
 <br>
 
