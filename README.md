@@ -1,29 +1,89 @@
-# Smart Utility Student System (SUSS)
+# 🎓 SUSS – Student Utility Support System
 
-A full-stack web development project designed to help students manage their daily academic and personal productivity tasks in one unified platform.
+An all-in-one student productivity web application designed to manage academic and personal tasks efficiently.
+
+---
 
 ## 🚀 Features
 
-- 🔐 User Authentication (Login/Register)
-- 💸 Expense Tracker
-- 📝 Secure Notes
-- 📅 Study Planner
-- 📄 Resume Skill Matcher
+* 📊 Expense Tracker
+* 📝 Notes Management
+* 📅 Planner
+* 📄 Resume Section
+* 🔐 User Authentication (Login/Register)
+* 📌 Clean Dashboard UI
+
+---
+
+## 🖼️ Screenshots
+
+### 🏠 Dashboard (Expense Tracker)
+
+![Dashboard](assets/dashboard.png)
+
+<br>
+
+### 👋 Welcome Page
+
+![Welcome](assets/welcome.png)
+
+<br>
+
+### 📝 Register Page
+
+![Register](assets/register.png)
+
+<br>
+
+### 🔐 Login (Filled Example)
+
+![Login Filled](assets/login-filled.png)
+
+<br>
+
+### 🔑 Login Page
+
+![Login](assets/login.png)
+
+---
 
 ## 🛠️ Tech Stack
 
-- Frontend: HTML, CSS, Bootstrap, JavaScript
-- Backend (Planned): Django
-- Database (Planned): SQLite
+* HTML
+* CSS
+* JavaScript
 
-## 📌 Description
+---
 
-Many students struggle to manage expenses, notes, schedules, and resume preparation using separate tools. This project integrates all these utilities into one system to improve efficiency and productivity.
+## 🚀 How to Run
 
-## ⚠️ Note
+1. Clone the repository:
 
-This version is currently frontend-only. Backend integration using Django is under development.
+```bash
+git clone https://github.com/SamShri16/SUSS_Project.git
+```
+
+2. Open the project folder
+
+3. Run the project:
+
+* Open `login.html` or `dashboard.html` in your browser
+
+---
+
+## 📚 Learning Outcome
+
+* Learned to design structured web applications
+* Implemented authentication UI flow
+* Built a clean and consistent UI
+* Improved frontend development skills
+
+---
 
 ## 👨‍💻 Author
 
 Samarth Shrivastava
+
+---
+
+⭐ If you like this project, consider giving it a star!
