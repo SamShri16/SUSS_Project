@@ -36,12 +36,12 @@ An all-in-one student productivity web application designed to manage academic a
 
 <br>
 
-### Features/Modules Pages
+### 📊 Features/Modules Pages
 
 ![Module1](assets/Module_1_Page.png)
-![Module1-2](assets/Module_1_Page_2.png)
+![Module1-2](assets/Module_1_Page2.png)
 ![Module2](assets/Module_2_Page.png)
-![Module2-2](assets/Module_2_Page_2.png)
+![Module2-2](assets/Module_2_Page2.png)
 ![Module3](assets/Module_3.png)
 
 <br>
