@@ -1,4 +1,4 @@
-# 🎓 SUSS – Student Utility Support System
+# 🎓 SUSS – Student Utility Student System
 
 An all-in-one student productivity web application designed to manage academic and personal tasks efficiently.
 
