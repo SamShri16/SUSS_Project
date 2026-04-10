@@ -84,6 +84,7 @@ git clone https://github.com/SamShri16/SUSS_Project.git
 ## 👨‍💻 Author
 
 Samarth Shrivastava
+Raunak Shukla
 
 ---
 
