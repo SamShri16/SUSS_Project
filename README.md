@@ -48,10 +48,10 @@ An all-in-one student productivity web application designed to manage academic a
 ---
 
 ## 🛠️ Tech Stack
-Frontend: HTML, CSS, Bootstrap
-Backend: Django (Python)
-Database: SQLite
-Version Control: Git & GitHub
+* Frontend: HTML, CSS, Bootstrap
+* Backend: Django (Python)
+* Database: SQLite
+* Version Control: Git & GitHub
 ---
 
 ## ⚙️ Installation & Setup
