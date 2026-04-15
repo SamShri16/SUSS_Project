@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Planner</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<a href="/dashboard/">⬅ Back to Dashboard</a>
+{% block content %}
 
 <h2>Study Planner</h2>
 
-<form method="POST">
+<form method="POST" class="mb-3">
     {% csrf_token %}
-    <input name="title" placeholder="Task"><br><br>
-    <input type="date" name="deadline"><br><br>
-    <button>Add Task</button>
+    <input name="title" class="form-control mb-2" placeholder="Task">
+    <input type="date" name="deadline" class="form-control mb-2">
+    <button class="btn btn-warning">Add Task</button>
 </form>
 
-<hr>
-
-<h3>Your Tasks:</h3>
-
-<ul>
+<ul class="list-group">
 {% for i in data %}
-    <li>{{ i.title }} - {{ i.deadline }}</li>
+    <li class="list-group-item">{{ i.title }} - {{ i.deadline }}</li>
 {% empty %}
-    <li>No tasks yet</li>
+    <li class="list-group-item">No tasks yet</li>
 {% endfor %}
 </ul>
 
-</body>
-</html>
+{% endblock %}

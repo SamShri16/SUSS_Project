@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Expenses</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<a href="/dashboard/">⬅ Back to Dashboard</a>
+{% block content %}
 
 <h2>Expense Tracker</h2>
 
-<form method="POST">
+<form method="POST" class="mb-3">
     {% csrf_token %}
-    <input name="amount" placeholder="Amount"><br><br>
-    <input name="category" placeholder="Category"><br><br>
-    <button>Add Expense</button>
+    <input name="amount" class="form-control mb-2" placeholder="Amount">
+    <input name="category" class="form-control mb-2" placeholder="Category">
+    <button class="btn btn-primary">Add Expense</button>
 </form>
 
-<hr>
-
-<h3>Your Expenses:</h3>
-
-<ul>
+<ul class="list-group">
 {% for i in data %}
-    <li>{{ i.category }} - ₹{{ i.amount }}</li>
+    <li class="list-group-item">{{ i.category }} - ₹{{ i.amount }}</li>
 {% empty %}
-    <li>No expenses added yet</li>
+    <li class="list-group-item">No expenses yet</li>
 {% endfor %}
 </ul>
 
-</body>
-</html>
+{% endblock %}

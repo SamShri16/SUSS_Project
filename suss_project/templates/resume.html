@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Resume Matcher</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<a href="/dashboard/">⬅ Back to Dashboard</a>
+{% block content %}
 
-<h2>Resume Skill Matcher</h2>
+<h2>Resume Matcher</h2>
 
-<form method="POST">
+<form method="POST" class="mb-3">
     {% csrf_token %}
-    <textarea name="resume" placeholder="Paste resume here"></textarea><br><br>
-    <input name="skills" placeholder="Enter skills (comma separated)"><br><br>
-    <button>Match Skills</button>
+    <textarea name="resume" class="form-control mb-2" placeholder="Paste resume"></textarea>
+    <input name="skills" class="form-control mb-2" placeholder="skills (comma)">
+    <button class="btn btn-info">Match</button>
 </form>
 
-<hr>
-
 {% if score %}
-<h3>Match Score: {{ score }}%</h3>
+<div class="alert alert-success">
+    Match Score: {{ score }}%
+</div>
 {% endif %}
 
-</body>
-</html>
+{% endblock %}

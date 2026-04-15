@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Notes</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<a href="/dashboard/">⬅ Back to Dashboard</a>
+{% block content %}
 
 <h2>Notes</h2>
 
-<form method="POST">
+<form method="POST" class="mb-3">
     {% csrf_token %}
-    <input name="title" placeholder="Title"><br><br>
-    <textarea name="content" placeholder="Write note here"></textarea><br><br>
-    <button>Add Note</button>
+    <input name="title" class="form-control mb-2" placeholder="Title">
+    <textarea name="content" class="form-control mb-2"></textarea>
+    <button class="btn btn-success">Add Note</button>
 </form>
 
-<hr>
-
-<h3>Your Notes:</h3>
-
-<ul>
+<ul class="list-group">
 {% for i in data %}
-    <li><b>{{ i.title }}</b> - {{ i.content }}</li>
+    <li class="list-group-item">
+        <b>{{ i.title }}</b> - {{ i.content }}
+    </li>
 {% empty %}
-    <li>No notes yet</li>
+    <li class="list-group-item">No notes yet</li>
 {% endfor %}
 </ul>
 
-</body>
-</html>
+{% endblock %}
