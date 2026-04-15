@@ -1,0 +1,11 @@
+<h2>Resume Matcher</h2>
+<form method="POST">
+{% csrf_token %}
+<textarea name="resume"></textarea>
+<input name="skills">
+<button>Match</button>
+</form>
+
+{% if score %}
+<p>Score: {{ score }}%</p>
+{% endif %}

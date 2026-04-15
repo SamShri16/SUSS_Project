@@ -1,0 +1,13 @@
+<h2>Planner</h2>
+<form method="POST">
+{% csrf_token %}
+<input name="title">
+<input type="date" name="deadline">
+<button>Add</button>
+</form>
+
+<ul>
+{% for i in data %}
+<li>{{ i.title }} - {{ i.deadline }}</li>
+{% endfor %}
+</ul>
