@@ -1,22 +1,89 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - SUSS</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-{% block content %}
+<body>
 
-<h2 class="mb-4">Dashboard</h2>
+<div class="container-fluid">
+    <div class="row">
 
-<div class="row">
-    <div class="col-md-3">
-        <a href="/expenses/" class="btn btn-primary w-100 mb-2">💸 Expenses</a>
-    </div>
-    <div class="col-md-3">
-        <a href="/notes/" class="btn btn-success w-100 mb-2">📝 Notes</a>
-    </div>
-    <div class="col-md-3">
-        <a href="/planner/" class="btn btn-warning w-100 mb-2">📅 Planner</a>
-    </div>
-    <div class="col-md-3">
-        <a href="/resume/" class="btn btn-info w-100 mb-2">📄 Resume</a>
+        <!-- Sidebar -->
+        <div class="col-md-2 bg-dark text-white p-3" style="height:100vh;">
+            <h4>SUSS</h4>
+            <hr>
+            <a href="#" class="text-white d-block" onclick="show('dashboard')">Dashboard</a>
+            <a href="#" class="text-white d-block" onclick="show('expense')">Expense</a>
+            <a href="#" class="text-white d-block" onclick="show('notes')">Notes</a>
+            <a href="#" class="text-white d-block" onclick="show('planner')">Planner</a>
+            <a href="#" class="text-white d-block" onclick="show('resume')">Resume</a>
+
+            <hr>
+            <a href="/logout/" class="btn btn-danger w-100">Logout</a>
+        </div>
+
+        <!-- Content -->
+        <div class="col-md-10 p-4">
+
+            <div id="dashboard">
+                <h2>Welcome to SUSS</h2>
+                <p>Your all-in-one student productivity system</p>
+            </div>
+
+            <div id="expense" style="display:none;">
+                <h3>Expense Tracker</h3>
+                <form method="POST" action="/expenses/">
+                    {% csrf_token %}
+                    <input name="amount" class="form-control mb-2" placeholder="Amount">
+                    <input name="category" class="form-control mb-2" placeholder="Category">
+                    <button class="btn btn-primary">Add</button>
+                </form>
+            </div>
+
+            <div id="notes" style="display:none;">
+                <h3>Notes</h3>
+                <form method="POST" action="/notes/">
+                    {% csrf_token %}
+                    <input name="title" class="form-control mb-2" placeholder="Title">
+                    <textarea name="content" class="form-control mb-2"></textarea>
+                    <button class="btn btn-success">Add</button>
+                </form>
+            </div>
+
+            <div id="planner" style="display:none;">
+                <h3>Planner</h3>
+                <form method="POST" action="/planner/">
+                    {% csrf_token %}
+                    <input name="title" class="form-control mb-2" placeholder="Task">
+                    <input type="date" name="deadline" class="form-control mb-2">
+                    <button class="btn btn-warning">Add</button>
+                </form>
+            </div>
+
+            <div id="resume" style="display:none;">
+                <h3>Resume Matcher</h3>
+                <form method="POST" action="/resume/">
+                    {% csrf_token %}
+                    <textarea name="resume" class="form-control mb-2"></textarea>
+                    <input name="skills" class="form-control mb-2">
+                    <button class="btn btn-danger">Match</button>
+                </form>
+            </div>
+
+        </div>
     </div>
 </div>
 
-{% endblock %}
+<script>
+function show(id) {
+    let sections = ["dashboard","expense","notes","planner","resume"];
+    sections.forEach(sec => document.getElementById(sec).style.display="none");
+    document.getElementById(id).style.display="block";
+}
+</script>
+
+</body>
+</html>

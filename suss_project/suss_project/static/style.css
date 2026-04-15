@@ -1,0 +1,40 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+body {
+    background: linear-gradient(135deg, #6a11cb, #8e44ad, #9b59b6);
+    font-family: Arial;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+
+.center-box {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sidebar */
+.bg-dark {
+    background-color: #2c1a4d !important;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+input, textarea {
+    border-radius: 8px !important;
+}
+
+button {
+    border-radius: 8px !important;
+}
