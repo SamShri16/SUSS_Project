@@ -1,13 +1,32 @@
-<h2>Planner</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planner</title>
+</head>
+<body>
+
+<a href="/dashboard/">⬅ Back to Dashboard</a>
+
+<h2>Study Planner</h2>
+
 <form method="POST">
-{% csrf_token %}
-<input name="title">
-<input type="date" name="deadline">
-<button>Add</button>
+    {% csrf_token %}
+    <input name="title" placeholder="Task"><br><br>
+    <input type="date" name="deadline"><br><br>
+    <button>Add Task</button>
 </form>
+
+<hr>
+
+<h3>Your Tasks:</h3>
 
 <ul>
 {% for i in data %}
-<li>{{ i.title }} - {{ i.deadline }}</li>
+    <li>{{ i.title }} - {{ i.deadline }}</li>
+{% empty %}
+    <li>No tasks yet</li>
 {% endfor %}
 </ul>
+
+</body>
+</html>

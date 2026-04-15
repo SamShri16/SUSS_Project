@@ -1,13 +1,32 @@
-<h2>Expenses</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses</title>
+</head>
+<body>
+
+<a href="/dashboard/">⬅ Back to Dashboard</a>
+
+<h2>Expense Tracker</h2>
+
 <form method="POST">
-{% csrf_token %}
-<input name="amount">
-<input name="category">
-<button>Add</button>
+    {% csrf_token %}
+    <input name="amount" placeholder="Amount"><br><br>
+    <input name="category" placeholder="Category"><br><br>
+    <button>Add Expense</button>
 </form>
+
+<hr>
+
+<h3>Your Expenses:</h3>
 
 <ul>
 {% for i in data %}
-<li>{{ i.category }} - ₹{{ i.amount }}</li>
+    <li>{{ i.category }} - ₹{{ i.amount }}</li>
+{% empty %}
+    <li>No expenses added yet</li>
 {% endfor %}
 </ul>
+
+</body>
+</html>
