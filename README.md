@@ -5,12 +5,12 @@ An all-in-one student productivity web application designed to manage academic a
 ---
 
 ## 🚀 Features
-💸 Expense Tracker – Track and manage daily expenses
-📝 Notes Management – Store and organize notes
-📅 Study Planner – Plan tasks and deadlines
-📄 Resume Skill Matcher – Match skills with job requirements
-🔐 User Authentication – Secure Login & Registration
-📌 Dashboard UI – Sidebar-based integrated system
+* 💸 Expense Tracker – Track and manage daily expenses
+* 📝 Notes Management – Store and organize notes
+* 📅 Study Planner – Plan tasks and deadlines
+* 📄 Resume Skill Matcher – Match skills with job requirements
+* 🔐 User Authentication – Secure Login & Registration
+* 📌 Dashboard UI – Sidebar-based integrated system
 
 ---
 
@@ -106,8 +106,8 @@ This project provides a unified platform that integrates essential utilities lik
 ---
 
 ## 👨‍💻 Contributors
-Samarth Shrivastava
-Raunak Shukla
+* Samarth Shrivastava
+* Raunak Shukla
 ---
 
 ⭐ If you like this project, consider giving it a star!
