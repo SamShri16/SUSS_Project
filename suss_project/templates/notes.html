@@ -2,23 +2,28 @@
 
 {% block content %}
 
-<h2>Notes</h2>
+<h3>Notes</h3>
 
-<form method="POST" class="mb-3">
+<form method="POST">
     {% csrf_token %}
     <input name="title" class="form-control mb-2" placeholder="Title">
     <textarea name="content" class="form-control mb-2"></textarea>
-    <button class="btn btn-success">Add Note</button>
+    <button class="btn btn-success">Add</button>
 </form>
 
+<hr>
+
 <ul class="list-group">
-{% for i in data %}
-    <li class="list-group-item">
-        <b>{{ i.title }}</b> - {{ i.content }}
-    </li>
-{% empty %}
-    <li class="list-group-item">No notes yet</li>
-{% endfor %}
+    {% for n in notes %}
+        <li class="list-group-item d-flex justify-content-between">
+            {{ n.title }}
+
+            <div>
+                <a href="/pin-note/{{ n.id }}/" class="btn btn-sm btn-warning">Pin</a>
+                <a href="/delete-note/{{ n.id }}/" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
 </ul>
 
 {% endblock %}

@@ -2,21 +2,24 @@
 
 {% block content %}
 
-<h2>Expense Tracker</h2>
+<h3>Expense Tracker</h3>
 
-<form method="POST" class="mb-3">
+<form method="POST">
     {% csrf_token %}
     <input name="amount" class="form-control mb-2" placeholder="Amount">
     <input name="category" class="form-control mb-2" placeholder="Category">
-    <button class="btn btn-primary">Add Expense</button>
+    <button class="btn btn-primary">Add</button>
 </form>
 
+<hr>
+
 <ul class="list-group">
-{% for i in data %}
-    <li class="list-group-item">{{ i.category }} - ₹{{ i.amount }}</li>
-{% empty %}
-    <li class="list-group-item">No expenses yet</li>
-{% endfor %}
+    {% for e in expenses %}
+        <li class="list-group-item d-flex justify-content-between">
+            {{ e.category }} - ₹{{ e.amount }}
+            <a href="/delete-expense/{{ e.id }}/" class="btn btn-sm btn-danger">Delete</a>
+        </li>
+    {% endfor %}
 </ul>
 
 {% endblock %}

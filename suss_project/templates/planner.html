@@ -2,21 +2,34 @@
 
 {% block content %}
 
-<h2>Study Planner</h2>
+<h3>Planner</h3>
 
-<form method="POST" class="mb-3">
+<form method="POST">
     {% csrf_token %}
     <input name="title" class="form-control mb-2" placeholder="Task">
-    <input type="date" name="deadline" class="form-control mb-2">
-    <button class="btn btn-warning">Add Task</button>
+    <input type="date" name="date" class="form-control mb-2">
+    <button class="btn btn-warning">Add</button>
 </form>
 
+<hr>
+
 <ul class="list-group">
-{% for i in data %}
-    <li class="list-group-item">{{ i.title }} - {{ i.deadline }}</li>
-{% empty %}
-    <li class="list-group-item">No tasks yet</li>
-{% endfor %}
+    {% for t in tasks %}
+        <li class="list-group-item d-flex justify-content-between">
+
+            {% if t.completed %}
+                <strike>{{ t.title }}</strike>
+            {% else %}
+                {{ t.title }}
+            {% endif %}
+
+            <div>
+                <a href="/complete-task/{{ t.id }}/" class="btn btn-sm btn-success">✔</a>
+                <a href="/delete-task/{{ t.id }}/" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+
+        </li>
+    {% endfor %}
 </ul>
 
 {% endblock %}
