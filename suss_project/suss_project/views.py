@@ -9,12 +9,13 @@ from django.contrib import messages
 @login_required
 def dashboard(request):
     total_expense = sum(e.amount for e in Expense.objects.all())
-    pending_tasks = Task.objects.filter(completed=False).count()
+    pending_tasks = Task.objects.filter(completed=False)
     pinned_notes = Note.objects.filter(pinned=True)[:3]
 
     return render(request, 'dashboard.html', {
         'total_expense': total_expense,
-        'pending_tasks': pending_tasks,
+        'pending_tasks_count': pending_tasks.count(),
+        'pending_tasks': pending_tasks[:3],   # 🔥 NEW
         'pinned_notes': pinned_notes
     })
 

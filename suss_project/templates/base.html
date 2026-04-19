@@ -20,11 +20,11 @@
             <h4>SUSS</h4>
             <hr>
 
-            <a href="/dashboard/" class="text-white d-block mb-2">Dashboard</a>
-            <a href="/expenses/" class="text-white d-block mb-2">Expense</a>
-            <a href="/notes/" class="text-white d-block mb-2">Notes</a>
-            <a href="/planner/" class="text-white d-block mb-2">Planner</a>
-            <a href="/resume/" class="text-white d-block mb-2">Resume</a>
+            <a href="/dashboard/" class="text-white d-block mb-2 {% if request.path == '/dashboard/' %}fw-bold{% endif %}">Dashboard</a>
+<a href="/expenses/" class="text-white d-block mb-2 {% if request.path == '/expenses/' %}fw-bold{% endif %}">Expense</a>
+<a href="/notes/" class="text-white d-block mb-2 {% if request.path == '/notes/' %}fw-bold{% endif %}">Notes</a>
+<a href="/planner/" class="text-white d-block mb-2 {% if request.path == '/planner/' %}fw-bold{% endif %}">Planner</a>
+<a href="/resume/" class="text-white d-block mb-2 {% if request.path == '/resume/' %}fw-bold{% endif %}">Resume</a>
 
             <hr>
 
@@ -35,6 +35,11 @@
         <div class="col-md-10 p-4">
 
             {% block content %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
             {% endblock %}
 
         </div>
