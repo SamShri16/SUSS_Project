@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login - SUSS</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
@@ -12,10 +13,19 @@
     <div class="card p-4" style="width: 350px;">
         <h3 class="text-center">Login</h3>
 
+        {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
         <form method="POST">
             {% csrf_token %}
             <input name="username" class="form-control mb-2" placeholder="Username">
-            <input name="password" type="password" class="form-control mb-2" placeholder="Password">
+
+            <div class="input-group mb-2">
+                <input id="pass" type="password" name="password" class="form-control" placeholder="Password">
+                <button type="button" class="btn btn-outline-secondary" onclick="toggle()">👁</button>
+            </div>
+
             <button class="btn btn-primary w-100">Login</button>
         </form>
 
@@ -24,6 +34,13 @@
         </p>
     </div>
 </div>
+
+<script>
+function toggle() {
+    let p = document.getElementById("pass");
+    p.type = (p.type === "password") ? "text" : "password";
+}
+</script>
 
 </body>
 </html>

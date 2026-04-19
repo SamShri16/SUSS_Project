@@ -16,22 +16,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from accounts import views as acc
-from expenses.views import expense_view
-from notes.views import notes_view
-from planner.views import planner_view
-from resume.views import resume_view
+
+from suss_project import views   # MAIN APP VIEWS
+from accounts.views import login_view, register_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', acc.login_view, name='login'),
-    path('register/', acc.register_view, name='register'),
-    path('dashboard/', acc.dashboard_view, name='dashboard'),
-    path('logout/', acc.logout_view, name='logout'),
+    # AUTH
+    path('login/', login_view),
+    path('register/', register_view),
+    path('logout/', logout_view),
 
-    path('expenses/', expense_view, name='expenses'),
-    path('notes/', notes_view, name='notes'),
-    path('planner/', planner_view, name='planner'),
-    path('resume/', resume_view, name='resume'),
+    # MAIN PAGES
+    path('', views.dashboard),
+    path('dashboard/', views.dashboard),
+
+    path('expenses/', views.expense),
+    path('delete-expense/<int:id>/', views.delete_expense),
+
+    path('notes/', views.notes),
+    path('delete-note/<int:id>/', views.delete_note),
+    path('pin-note/<int:id>/', views.pin_note),
+
+    path('planner/', views.planner),
+    path('delete-task/<int:id>/', views.delete_task),
+    path('complete-task/<int:id>/', views.complete_task),
+
+    path('resume/', views.resume),
 ]
