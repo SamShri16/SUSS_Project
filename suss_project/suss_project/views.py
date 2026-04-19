@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from expenses.models import Expense
 from notes.models import Note
 from planner.models import Task
-
+from django.contrib import messages
 
 @login_required
 def dashboard(request):

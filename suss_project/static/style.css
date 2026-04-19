@@ -1,13 +1,11 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'style.css' %}">
 body {
-    background: linear-gradient(135deg, #6a11cb, #8e44ad, #9b59b6);
+    background: linear-gradient(to right, #6a11cb, #2575fc);
     font-family: Arial;
 }
 
 .card {
     border-radius: 12px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .center-box {
@@ -17,24 +15,28 @@ body {
     align-items: center;
 }
 
-/* Sidebar */
-.bg-dark {
-    background-color: #2c1a4d !important;
+.sidebar {
+    background: #1e1e2f;
+    height: 100vh;
 }
 
-/* Links */
-a {
+.sidebar a {
+    color: white;
     text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
 }
 
-a:hover {
-    opacity: 0.8;
+.sidebar a:hover {
+    color: #6a11cb;
 }
 
-input, textarea {
-    border-radius: 8px !important;
+.dashboard-card {
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
 }
 
-button {
-    border-radius: 8px !important;
-}
+.bg-expense { background: #ff6b6b; }
+.bg-task { background: #feca57; }
+.bg-note { background: #48dbfb; }
