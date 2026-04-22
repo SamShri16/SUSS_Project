@@ -20,6 +20,8 @@ from django.urls import path
 from suss_project import views   # MAIN APP VIEWS
 from accounts.views import login_view, register_view, logout_view
 
+from expenses.views import expense_view, delete_expense, income_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -42,6 +44,10 @@ urlpatterns = [
     path('planner/', views.planner),
     path('delete-task/<int:id>/', views.delete_task),
     path('complete-task/<int:id>/', views.complete_task),
+    
+    path('expenses/', expense_view),
+    path('delete-expense/<int:id>/', delete_expense),
+    path('income/', income_view),
 
     path('resume/', views.resume),
 ]

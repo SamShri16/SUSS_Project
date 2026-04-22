@@ -2,22 +2,32 @@
 
 {% block content %}
 
-<h3>Expense Tracker</h3>
+<h2>Expense Tracker</h2>
+
+<!-- FILTER -->
+<a href="?filter=today" class="btn btn-sm btn-outline-primary">Today</a>
+<a href="?filter=month" class="btn btn-sm btn-outline-primary">This Month</a>
+<a href="/expenses/" class="btn btn-sm btn-outline-secondary">All</a>
+
+<hr>
 
 <form method="POST">
     {% csrf_token %}
     <input name="amount" class="form-control mb-2" placeholder="Amount">
     <input name="category" class="form-control mb-2" placeholder="Category">
-    <button class="btn btn-primary">Add</button>
+    <input type="date" name="date" class="form-control mb-2">
+    <button class="btn btn-success">Add Expense</button>
 </form>
 
 <hr>
 
-<ul class="list-group">
+<h4>Total: ₹ {{ total }}</h4>
+
+<ul class="list-group mt-2">
     {% for e in expenses %}
         <li class="list-group-item d-flex justify-content-between">
-            {{ e.category }} - ₹{{ e.amount }}
-            <a href="/delete-expense/{{ e.id }}/" class="btn btn-sm btn-danger">Delete</a>
+            {{ e.category }} - ₹{{ e.amount }} ({{ e.date }})
+            <button onclick="confirmDelete('/delete-expense/{{ e.id }}/')" class="btn btn-sm btn-outline-danger">Delete</button>
         </li>
     {% endfor %}
 </ul>
