@@ -17,7 +17,7 @@ def register_view(request):
             messages.error(request, "Username already exists")
             return redirect('/register/')
 
-        User.objects.create_user(username=username, password=password)
+        User.objects.create_user(username=username, password=password, email=email)
         messages.success(request, "Registered successfully")
         return redirect('/login/')
 
