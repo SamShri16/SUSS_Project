@@ -6,6 +6,39 @@ from notes.models import Note
 from planner.models import Task
 from django.contrib import messages
 
+from datetime import datetime
+from expenses.models import Expense
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+@login_required
+def expense(request):
+    if request.method == "POST":
+        amount = request.POST.get("amount")
+        category = request.POST.get("category")
+        date = request.POST.get("date")
+
+        if not date:
+            date = datetime.today().date()
+
+        Expense.objects.create(
+            user=request.user,
+            amount=amount,
+            category=category,
+            date=date
+        )
+
+        return redirect("expenses")
+
+    expenses = Expense.objects.filter(user=request.user).order_by('-date')
+
+    return render(request, "expenses.html", {"expenses": expenses})
+
+
+
+
+
+
 @login_required
 def dashboard(request):
     total_expense = sum(e.amount for e in Expense.objects.all())
