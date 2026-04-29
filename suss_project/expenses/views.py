@@ -1,68 +1,57 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from datetime import date, timedelta
 from .models import Expense, Income
+from datetime import date
 
 
 @login_required
-def expenses_view(request):
-    filter_type = request.GET.get('filter', 'all')
-
-    today = date.today()
-
-    if filter_type == 'today':
-        expenses = Expense.objects.filter(user=request.user, date=today)
-
-    elif filter_type == 'week':
-        start_week = today - timedelta(days=7)
-        expenses = Expense.objects.filter(user=request.user, date__gte=start_week)
-
-    elif filter_type == 'month':
-        expenses = Expense.objects.filter(user=request.user, date__month=today.month)
-
-    else:
-        expenses = Expense.objects.filter(user=request.user)
-
-    expenses = expenses.order_by('-date')
-
-    total_expense = sum(e.amount for e in expenses)
-
-    return render(request, 'expenses.html', {
-        'expenses': expenses,
-        'total_expense': total_expense,
-        'filter': filter_type
-    })
-
-
-@login_required
-def add_expense(request):
+def expense_view(request):
     if request.method == "POST":
         amount = request.POST.get("amount")
         category = request.POST.get("category")
-        date_val = request.POST.get("date")
+        expense_date = request.POST.get("date")
 
         Expense.objects.create(
             user=request.user,
             amount=amount,
             category=category,
-            date=date_val
+            date=expense_date if expense_date else date.today()
         )
 
-    return redirect('expenses')
+        return redirect("expenses")
+
+    expenses = Expense.objects.filter(user=request.user).order_by("-date")
+
+    return render(request, "expenses/expenses.html", {
+        "expenses": expenses
+    })
 
 
 @login_required
-def add_income(request):
+def delete_expense(request, id):
+    exp = Expense.objects.get(id=id, user=request.user)
+    exp.delete()
+    return redirect("expenses")
+
+
+@login_required
+def income_view(request):
     if request.method == "POST":
         amount = request.POST.get("amount")
         source = request.POST.get("source")
-        date_val = request.POST.get("date")
+        income_date = request.POST.get("date")
 
         Income.objects.create(
             user=request.user,
             amount=amount,
             source=source,
-            date=date_val
+            date=income_date if income_date else date.today()
         )
 
-    return redirect('expenses')
+        return redirect("income")
+
+    incomes = Income.objects.filter(user=request.user).order_by("-date")
+
+    return render(request, "expenses/income.html", {
+        "incomes": incomes
+    })

@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from suss_project import views   # MAIN APP VIEWS
 from accounts.views import login_view, register_view, logout_view
@@ -33,6 +33,11 @@ urlpatterns = [
     # MAIN PAGES
     path('', views.dashboard),
     path('dashboard/', views.dashboard),
+    
+    path('expenses/', expense_view, name='expenses'),
+    path('expenses/delete/<int:id>/', delete_expense, name='delete_expense'),
+    path('income/', income_view, name='income'),
+
 
     path('expenses/', views.expense),
     path('delete-expense/<int:id>/', views.delete_expense),
