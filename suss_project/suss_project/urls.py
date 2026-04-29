@@ -29,7 +29,7 @@ urlpatterns = [
     path('login/', login_view),
     path('register/', register_view),
     path('logout/', logout_view),
-
+    path('expenses/', include('expenses.urls')),
     # MAIN PAGES
     path('', views.dashboard),
     path('dashboard/', views.dashboard),

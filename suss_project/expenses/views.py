@@ -1,69 +1,68 @@
 from django.shortcuts import render, redirect
-from .models import Expense, Income
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from datetime import date
+from datetime import date, timedelta
+from .models import Expense, Income
 
 
 @login_required
-def expense_view(request):
+def expenses_view(request):
+    filter_type = request.GET.get('filter', 'all')
 
-    filter_type = request.GET.get('filter')
-
-    # ✅ ONLY CURRENT USER DATA
-    expenses = Expense.objects.filter(user=request.user)
+    today = date.today()
 
     if filter_type == 'today':
-        expenses = expenses.filter(date=date.today())
+        expenses = Expense.objects.filter(user=request.user, date=today)
+
+    elif filter_type == 'week':
+        start_week = today - timedelta(days=7)
+        expenses = Expense.objects.filter(user=request.user, date__gte=start_week)
 
     elif filter_type == 'month':
-        expenses = expenses.filter(date__month=date.today().month)
+        expenses = Expense.objects.filter(user=request.user, date__month=today.month)
 
-    total = sum(e.amount for e in expenses)
+    else:
+        expenses = Expense.objects.filter(user=request.user)
 
-    if request.method == 'POST':
-        Expense.objects.create(
-            user=request.user,   # ✅ IMPORTANT
-            amount=request.POST.get('amount'),
-            category=request.POST.get('category'),
-            date=request.POST.get('date')
-        )
+    expenses = expenses.order_by('-date')
 
-        messages.success(request, "Expense added")
-        return redirect('/expenses/')
+    total_expense = sum(e.amount for e in expenses)
 
-    return render(request, 'expense.html', {
+    return render(request, 'expenses.html', {
         'expenses': expenses,
-        'total': total
+        'total_expense': total_expense,
+        'filter': filter_type
     })
 
 
 @login_required
-def delete_expense(request, id):
-    Expense.objects.filter(id=id, user=request.user).delete()  # ✅ SAFE DELETE
-    messages.success(request, "Expense deleted")
-    return redirect('/expenses/')
+def add_expense(request):
+    if request.method == "POST":
+        amount = request.POST.get("amount")
+        category = request.POST.get("category")
+        date_val = request.POST.get("date")
 
-
-@login_required
-def income_view(request):
-
-    incomes = Income.objects.filter(user=request.user)
-
-    total_income = sum(i.amount for i in incomes)
-
-    if request.method == 'POST':
-        Income.objects.create(
-            user=request.user,  # ✅ IMPORTANT
-            amount=request.POST.get('amount'),
-            source=request.POST.get('source'),
-            date=request.POST.get('date')
+        Expense.objects.create(
+            user=request.user,
+            amount=amount,
+            category=category,
+            date=date_val
         )
 
-        messages.success(request, "Income added")
-        return redirect('/income/')
+    return redirect('expenses')
 
-    return render(request, 'income.html', {
-        'incomes': incomes,
-        'total_income': total_income
-    })
+
+@login_required
+def add_income(request):
+    if request.method == "POST":
+        amount = request.POST.get("amount")
+        source = request.POST.get("source")
+        date_val = request.POST.get("date")
+
+        Income.objects.create(
+            user=request.user,
+            amount=amount,
+            source=source,
+            date=date_val
+        )
+
+    return redirect('expenses')
