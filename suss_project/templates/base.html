@@ -4,10 +4,9 @@
     <title>SUSS</title>
 
     {% load static %}
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'style.css' %}">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,38 +14,49 @@
 <div class="container-fluid">
     <div class="row">
 
-        <!-- 🔥 SIDEBAR -->
+        <!-- SIDEBAR -->
         <div class="col-md-2 bg-dark text-white p-3" style="height:100vh;">
             <h4>SUSS</h4>
             <hr>
 
-            <a href="/dashboard/" class="text-white d-block mb-2 {% if request.path == '/dashboard/' %}fw-bold{% endif %}">Dashboard</a>
-<a href="/expenses/" class="text-white d-block mb-2 {% if request.path == '/expenses/' %}fw-bold{% endif %}">Expense</a>
-<a href="/notes/" class="text-white d-block mb-2 {% if request.path == '/notes/' %}fw-bold{% endif %}">Notes</a>
-<a href="/planner/" class="text-white d-block mb-2 {% if request.path == '/planner/' %}fw-bold{% endif %}">Planner</a>
-<a href="/resume/" class="text-white d-block mb-2 {% if request.path == '/resume/' %}fw-bold{% endif %}">Resume</a>
-<a href="/income/" class="text-white d-block mb-2">Income</a>
+            <a href="/dashboard/" class="text-white d-block mb-2">Dashboard</a>
+            <a href="/expenses/" class="text-white d-block mb-2">Expenses</a>
+            <a href="/income/" class="text-white d-block mb-2">Income</a>
+            <a href="/notes/" class="text-white d-block mb-2">Notes</a>
+            <a href="/planner/" class="text-white d-block mb-2">Planner</a>
 
             <hr>
-
             <a href="/logout/" class="btn btn-danger w-100">Logout</a>
         </div>
 
-        <!-- 🔥 MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
         <div class="col-md-10 p-4">
 
-            {% block content %}
+            <!-- ALERTS -->
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert alert-success">{{ message }}</div>
+                    <div class="alert alert-success alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
                 {% endfor %}
             {% endif %}
-            {% endblock %}
+
+            {% block content %}{% endblock %}
 
         </div>
-
     </div>
 </div>
+
+<script>
+function confirmDelete(url){
+    if(confirm("Are you sure?")){
+        window.location.href = url;
+    }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

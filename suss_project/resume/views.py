@@ -3,13 +3,16 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def resume_view(request):
-    score = None
 
-    if request.method == "POST":
-        resume = request.POST['resume']
-        skills = request.POST['skills'].split(',')
+    result = None
 
-        count = sum(1 for s in skills if s.strip().lower() in resume.lower())
-        score = (count / len(skills)) * 100
+    if request.method == 'POST':
+        resume = request.POST['resume'].lower()
+        skills = request.POST['skills'].lower().split(',')
 
-    return render(request, 'resume.html', {'score': score})
+        count = sum(1 for s in skills if s.strip() in resume)
+        score = (count / len(skills)) * 100 if skills else 0
+
+        result = f"{round(score,2)} % match"
+
+    return render(request, 'resume.html', {'result': result})

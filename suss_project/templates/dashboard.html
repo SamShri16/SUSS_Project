@@ -3,30 +3,20 @@
 {% block content %}
 
 <h2>Dashboard</h2>
-<p>Welcome back 👋</p>
-
-<hr>
 
 <div class="row">
 
     <div class="col-md-4">
-        <div class="dashboard-card bg-expense">
-            <h5>Total Expenses</h5>
-            <h2>₹ {{ total_expense }}</h2>
+        <div class="card p-3">
+            <h5>Total Expense</h5>
+            <h3>₹ {{ total_expense }}</h3>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="dashboard-card bg-task">
-            <h5>Pending Tasks</h5>
-            <h2>{{ pending_tasks_count }}</h2>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="dashboard-card bg-note">
-            <h5>Pinned Notes</h5>
-            <h2>{{ pinned_notes|length }}</h2>
+        <div class="card p-3">
+            <h5>Total Income</h5>
+            <h3>₹ {{ total_income }}</h3>
         </div>
     </div>
 
@@ -34,32 +24,22 @@
 
 <hr>
 
-<div class="row">
+<h4>📌 Pinned Notes</h4>
+<ul class="list-group mb-3">
+{% for note in notes %}
+    <li class="list-group-item">{{ note.title }}</li>
+{% empty %}
+    <li class="list-group-item">No pinned notes</li>
+{% endfor %}
+</ul>
 
-    <!-- 🔥 Pinned Notes -->
-    <div class="col-md-6">
-        <h4>Pinned Notes</h4>
-        <ul class="list-group">
-            {% for note in pinned_notes %}
-                <li class="list-group-item">{{ note.title }}</li>
-            {% empty %}
-                <li class="list-group-item text-muted">No pinned notes</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- 🔥 Pending Tasks -->
-    <div class="col-md-6">
-        <h4>Top Pending Tasks</h4>
-        <ul class="list-group">
-            {% for task in pending_tasks %}
-                <li class="list-group-item">{{ task.title }}</li>
-            {% empty %}
-                <li class="list-group-item text-muted">No pending tasks</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-</div>
+<h4>📅 Pending Tasks</h4>
+<ul class="list-group">
+{% for task in tasks %}
+    <li class="list-group-item">{{ task.title }}</li>
+{% empty %}
+    <li class="list-group-item">No pending tasks</li>
+{% endfor %}
+</ul>
 
 {% endblock %}
