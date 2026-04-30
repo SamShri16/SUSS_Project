@@ -55,3 +55,12 @@ def income_view(request):
     return render(request, "expenses/income.html", {
         "incomes": incomes
     })
+
+
+from django.http import HttpResponse
+
+def add_expense(request):
+    return HttpResponse("Add Expense Page")
+
+
+

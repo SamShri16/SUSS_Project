@@ -8,7 +8,7 @@ urlpatterns = [
     path('expenses/', include('expenses.urls')),
 
     path('admin/', admin.site.urls),
-
+    # path('accounts/', include('accounts.urls')),
       # if exists
     path('expenses/', include('expenses.urls')),   # ✅ THIS ONE
 
