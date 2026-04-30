@@ -9,7 +9,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('accounts/', include('accounts.urls')),   # if exists
+      # if exists
     path('expenses/', include('expenses.urls')),   # ✅ THIS ONE
 
     path('add-expense/', views.add_expense, name='add_expense'),
