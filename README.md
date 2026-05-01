@@ -108,6 +108,8 @@ This project provides a unified platform that integrates essential utilities lik
 ## 👨‍💻 Contributors
 * Samarth Shrivastava
 * Raunak Shukla
+* Samar Mahore
+* Rajeev Dangi
 ---
 
 ⭐ If you like this project, consider giving it a star!
