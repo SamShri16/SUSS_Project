@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h1>Dashboard</h1>
+
+<h2>Total Expense: ₹{{ total_expense }}</h2>
+<h2>Total Tasks: {{ total_tasks }}</h2>
+<h2>Completed Tasks: {{ completed_tasks }}</h2>
+<h2>Pending Tasks: {{ pending_tasks }}</h2>
+
+<hr>
+
+<h3>Recent Tasks</h3>
+<ul>
+    {% for task in recent_tasks %}
+        <li>{{ task.title }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Recent Expenses</h3>
+<ul>
+    {% for exp in recent_expenses %}
+        <li>{{ exp.title }} - ₹{{ exp.amount }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

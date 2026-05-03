@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'notes',
     'planner',
     'resume',
+    'core',
+
 
 ]
 
