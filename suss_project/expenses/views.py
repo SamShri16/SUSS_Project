@@ -62,5 +62,16 @@ from django.http import HttpResponse
 def add_expense(request):
     return HttpResponse("Add Expense Page")
 
+from django.http import HttpResponse
+
+def add_expense(request):
+    return HttpResponse("Add Expense Page")
+
+def add_income(request):
+    return HttpResponse("Add Income Page")
+
+
+
+
 
 
