@@ -1,15 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Note
-from django.contrib.auth.decorators import login_required
 
-@login_required
-def notes_view(request):
-    if request.method == "POST":
-        Note.objects.create(
-            user=request.user,
-            title=request.POST['title'],
-            content=request.POST['content']
-        )
+def notes(request):
+    all_notes = Note.objects.all().order_by('-id')
+    return render(request, 'notes.html', {'notes': all_notes})
 
-    data = Note.objects.filter(user=request.user)
-    return render(request, 'notes.html', {'data': data})
+
+def delete_note(request, id):
+    note = Note.objects.get(id=id)
+    note.delete()
+    return redirect('/notes/')
+
+
+def pin_note(request, id):
+    note = Note.objects.get(id=id)
+    note.pinned = not note.pinned
+    note.save()
+    return redirect('/notes/')

@@ -1,32 +1,61 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Dashboard</h1>
+{% block content %}
 
-<h2>Total Expense: ₹{{ total_expense }}</h2>
-<h2>Total Tasks: {{ total_tasks }}</h2>
-<h2>Completed Tasks: {{ completed_tasks }}</h2>
-<h2>Pending Tasks: {{ pending_tasks }}</h2>
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row text-center mb-4">
+    <div class="col-md-3">
+        <div class="card p-3 shadow">
+            <h5>Total Expense</h5>
+            <h3>₹{{ total_expense }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 shadow">
+            <h5>Total Tasks</h5>
+            <h3>{{ total_tasks }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 shadow">
+            <h5>Completed</h5>
+            <h3>{{ completed_tasks }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-3 shadow">
+            <h5>Pending</h5>
+            <h3>{{ pending_tasks }}</h3>
+        </div>
+    </div>
+</div>
 
 <hr>
 
-<h3>Recent Tasks</h3>
-<ul>
+<h4>Recent Tasks</h4>
+<ul class="list-group mb-4">
     {% for task in recent_tasks %}
-        <li>{{ task.title }}</li>
+        <li class="list-group-item">
+            {{ task.title }}
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted">No tasks yet</li>
     {% endfor %}
 </ul>
 
-<h3>Recent Expenses</h3>
-<ul>
-    {% for exp in recent_expenses %}
-        <li>{{ exp.title }} - ₹{{ exp.amount }}</li>
+<h4>Recent Expenses</h4>
+<ul class="list-group">
+    {% for expense in recent_expenses %}
+        <li class="list-group-item">
+            ₹{{ expense.amount }} - {{ expense.category }}
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted">No expenses yet</li>
     {% endfor %}
 </ul>
 
-</body>
-</html>
+{% endblock %}

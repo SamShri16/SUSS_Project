@@ -1,15 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Task
-from django.contrib.auth.decorators import login_required
 
-@login_required
-def planner_view(request):
-    if request.method == "POST":
-        Task.objects.create(
-            user=request.user,
-            title=request.POST['title'],
-            deadline=request.POST['deadline']
-        )
+def planner(request):
+    tasks = Task.objects.all().order_by('-id')
+    return render(request, 'planner.html', {'tasks': tasks})
 
-    data = Task.objects.filter(user=request.user)
-    return render(request, 'planner.html', {'data': data})
+
+def delete_task(request, id):
+    task = Task.objects.get(id=id)
+    task.delete()
+    return redirect('/planner/')
+
+
+def complete_task(request, id):
+    task = Task.objects.get(id=id)
+    task.completed = True
+    task.save()
+    return redirect('/planner/')
